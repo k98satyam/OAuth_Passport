@@ -1,5 +1,8 @@
 const express = require('express');
 const authRoutes = require('./routes/auth-routes');
+const googleRoutes = require('./routes/auth-google');
+const facebookRoutes = require('./routes/auth-facebook');
+const githubRoutes = require('./routes/auth-github');
 const profileRoutes = require('./routes/profile-routes');
 const passportSetup = require('./config/passport-setup')
 const mongoose = require('mongoose')
@@ -42,6 +45,9 @@ mongoose.connect(process.env.MONGO_URI,{ useCreateIndex: true, useNewUrlParser: 
 
 // set up routes
 app.use('/auth', authRoutes);
+app.use('/auth/google', googleRoutes);
+app.use('/auth/facebook', facebookRoutes);
+app.use('/auth/github', githubRoutes);
 app.use('/profile', profileRoutes);
 
 // create home route
